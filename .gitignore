@@ -1,1 +1,5 @@
-/.settings
+settings/
+bin/
+.idea/ #Folder create by Intellij
+.classpath
+.project

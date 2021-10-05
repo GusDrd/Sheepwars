@@ -1,17 +1,19 @@
-package fr.azrock.sheepwars.Common.Arenas;
+package fr.azrock.sheepwars.Common;
 
 import java.util.ArrayList;
 
 import org.bukkit.Location;
 
+import fr.azrock.sheepwars.SheepWars;
 import fr.azrock.sheepwars.Common.Sheeps.Sheep;
 import fr.azrock.sheepwars.Utils.Spawn;
 
-public class Arena {
+public class Game {
 
-	private String name;
-
-	private boolean open;
+	private SheepWars plugin;
+	
+	private GameConfig config;
+	
 
 	private int minPlayers;
 	private int playersToReduce;
@@ -36,28 +38,40 @@ public class Arena {
 
 
 
-	public Arena(String name) {
+	public Game(SheepWars plugin) {
 
-		this.name = name;
+		this.plugin = plugin;
+		
+		this.config = (GameConfig)plugin.getConfigManager().getConfigByName("game");
 
-		open(false);
+		
+		//----- PLAYER LIMITS -------------------
+		setMinPlayers(config.getMinPlayers());
+		setMaxPlayers(config.getMaxPlayers());
+		setPlayersToReduce(config.getPlayersToReduce());
 
-		setMinPlayers(8);
-		setMaxPlayers(14);
-		setPlayersToReduce(10);
+		
+		//----- TIMERS --------------------------
+		setWaitingTime(config.getWaitingTime());
+		setGameTime(config.getGameTime());
+		setDeathMatchTime(config.getDeathMatchGiveInterval());
 
-		setWaitingTime(120);
-		setGameTime(600);
-		setDeathMatchTime(300);
-
-		setBonusSpawnInterval(60);
+		
+		//----- BONUS ---------------------------
+		setBonusSpawnInterval(config.getBonusSpawnInterval());
 		this.bonusLocs = new ArrayList<Location>();
 
-		setSheepGiveInterval(30);
-		setDeathMatchGiveInterval(60);
+		
+		//----- INTERVALS -----------------------
+		setSheepGiveInterval(config.getSheepGiveInterval());
+		setDeathMatchGiveInterval(config.getDeathMatchGiveInterval());
 
+		
+		//----- SHEEPS ON -----------------------
 		this.enabledSheeps = new ArrayList<Sheep>();
 
+		
+		//----- SPAWNS --------------------------
 		this.lobby = null;
 		this.specSpawn = null;
 		this.redSpawns = new ArrayList<Spawn>();
@@ -84,14 +98,6 @@ public class Arena {
 	/* =========================================================  *
 	 * ===                      GETTERS                      ===  *
 	 * =========================================================  */
-
-	public String getName() {
-		return name;
-	}
-
-	public boolean isOpen() {
-		return open;
-	}
 
 	public int getMinPlayers() {
 		return minPlayers;
@@ -158,14 +164,6 @@ public class Arena {
 	/* =========================================================  *
 	 * ===                      SETTERS                      ===  *
 	 * =========================================================  */
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public void open(boolean open) {
-		this.open = open;
-	}
 
 	public void setMinPlayers(int minPlayers) {
 		this.minPlayers = minPlayers;

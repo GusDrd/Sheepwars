@@ -3,7 +3,10 @@ package fr.azrock.sheepwars.Commands;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+
+import fr.azrock.sheepwars.Commands.Cmds.SetupCmd;
 
 public class SWCommand extends ACommand {
 
@@ -11,7 +14,7 @@ public class SWCommand extends ACommand {
 	
 	
 	public SWCommand() {
-		super("Sheepwars", "sheepwars");
+		super("Sheepwars");
 		
 		sCommands = new ArrayList<SubCommand>();
 		registerSubCommands();
@@ -19,8 +22,7 @@ public class SWCommand extends ACommand {
 	
 	
 	public void registerSubCommands() {
-		
-		
+		sCommands.add(new SetupCmd());
 	}
 	
 
@@ -28,8 +30,15 @@ public class SWCommand extends ACommand {
 	public void execute(Player player, String[] args) {
 		
 		if(args.length == 0) {
+			
+			if(!player.hasPermission("sheepwars.help")) return;
 
-			//MessageUtils.getInstance().alert(player, Alert.CRITICAL, "Essaie avec /warp list/create/remove/tp <warp>");
+			player.sendMessage(ChatColor.DARK_GRAY+"-------- "+ChatColor.AQUA+"SheepWars"+ChatColor.DARK_GRAY+" --------");
+			player.sendMessage(ChatColor.YELLOW+"Welcome in SheepWars!");
+			player.sendMessage(ChatColor.YELLOW+"To configure your sheepwars server, simply type "+ChatColor.AQUA+"/sw setup"+ChatColor.YELLOW+" !");
+			player.sendMessage(ChatColor.YELLOW+"Simply navigate through the interactive menu to setup your server.");
+			player.sendMessage(ChatColor.YELLOW+"All public messages can be changed through the "+ChatColor.AQUA+"message.yml"+ChatColor.AQUA+" config file.");
+			player.sendMessage(ChatColor.DARK_GRAY+"-------------------------");
 			return;
 
 		}else {
@@ -38,9 +47,14 @@ public class SWCommand extends ACommand {
 
 			//Check if argument exists
 			if(cmdArg == null) {
-				//MessageUtils.getInstance().alert(player, Alert.UNKNOWN_COMMAND);
+				if(!player.hasPermission("sheepwars.help")) return;
+				
+				player.sendMessage(ChatColor.RED+"This command doesn't exist! Try /sheepwars to get help.");
 				return;
 			}
+			
+			if(!player.hasPermission(cmdArg.permission())) return;
+			
 
 			ArrayList<String> al = new ArrayList<String>();		//Declare new ArrayList al
 			al.addAll(Arrays.asList(args));  					//Initialize new arrayList al with the args array's content.
@@ -49,7 +63,7 @@ public class SWCommand extends ACommand {
 
 			try {
 				cmdArg.execute(player, args);
-			}catch(Exception e) { player.sendMessage("§cUne erreur s'est produite!"); e.printStackTrace(); }
+			}catch(Exception e) { player.sendMessage(ChatColor.RED+"An error occured!"); e.printStackTrace(); }
 
 		}
 		

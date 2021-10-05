@@ -9,7 +9,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 public abstract class ACommand implements CommandExecutor {
 	
 	public String name;
-	public String permission;
 	
 	public abstract void execute(Player player, String[] args);
 	
@@ -17,9 +16,8 @@ public abstract class ACommand implements CommandExecutor {
 	
 	
 	
-	public ACommand(String name, String permission) {
+	public ACommand(String name) {
 		this.name = name;
-		this.permission = permission;
 		
 		plugin.getCommand(name).setExecutor(this);
 	}
@@ -29,17 +27,12 @@ public abstract class ACommand implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
+		Player player = (Player)sender;
+		
 		if(!(sender instanceof Player)) return false;
 		
 		if(!(cmd.getLabel().equalsIgnoreCase(name))) return false;
-		
-		Player player = (Player)sender;
-		
-		/*if(!(player.hasPermission(permission))) {
-			player.sendMessage(ChatColor.RED+"You do not have access to this command!");
-			return false;
-		}*/
-		
+						
 		
 		execute(player, args);
 		return true;

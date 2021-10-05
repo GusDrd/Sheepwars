@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
+import fr.azrock.sheepwars.Common.GameConfig;
 import fr.azrock.sheepwars.Config.ConfigFiles.MessageConfig;
 
 public class ConfigManager {
@@ -38,6 +39,7 @@ public Plugin plugin;
 	
 	public void registerConfigs() {
 		this.configList.add(new MessageConfig(this.plugin));
+		this.configList.add(new GameConfig(this.plugin));
 	}
 	
 	

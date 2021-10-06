@@ -5,6 +5,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import fr.azrock.sheepwars.Commands.ACommand;
 import fr.azrock.sheepwars.Common.Game;
 import fr.azrock.sheepwars.Config.ConfigManager;
+import fr.azrock.sheepwars.Utils.ListenerManager;
 
 public class SheepWars extends JavaPlugin {
 
@@ -25,7 +26,9 @@ public class SheepWars extends JavaPlugin {
 		game = new Game(this);
 		
 		
-		ACommand.registerCommands(this);		
+		ACommand.registerCommands(this);
+		
+		ListenerManager.registerListeners(this);
 	}
 	
 	

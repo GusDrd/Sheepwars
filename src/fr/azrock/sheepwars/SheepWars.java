@@ -6,6 +6,7 @@ import fr.azrock.sheepwars.Commands.ACommand;
 import fr.azrock.sheepwars.Common.Game;
 import fr.azrock.sheepwars.Config.ConfigManager;
 import fr.azrock.sheepwars.Utils.ListenerManager;
+import fr.azrock.sheepwars.Utils.Inventories.InventoryManager;
 
 public class SheepWars extends JavaPlugin {
 
@@ -14,7 +15,9 @@ public class SheepWars extends JavaPlugin {
 	
 	private ConfigManager configManager;
 	
-	private Game game;
+	private InventoryManager guiManager;
+	
+	private Game gameManager;
 	
 	
 	
@@ -23,7 +26,9 @@ public class SheepWars extends JavaPlugin {
 		
 		configManager = new ConfigManager(this);
 		
-		game = new Game(this);
+		gameManager = new Game(this);
+		
+		guiManager = new InventoryManager();
 		
 		
 		ACommand.registerCommands(this);
@@ -42,6 +47,10 @@ public class SheepWars extends JavaPlugin {
 	}
 	
 	public Game getGame() {
-		return this.game;
+		return this.gameManager;
+	}
+	
+	public InventoryManager getInventoryManager() {
+		return this.guiManager;
 	}
 }

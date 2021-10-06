@@ -46,6 +46,19 @@ public class ItemBuilder {
 	
 	
 	
+	public ItemBuilder hideAllFlags() {
+		itemMeta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
+		itemMeta.addItemFlags(ItemFlag.HIDE_DESTROYS);
+		itemMeta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
+		itemMeta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
+		itemMeta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
+		itemMeta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+		
+		return this;
+	}
+	
+	
+	
 	public ItemStack build() {		
 		itemStack.setItemMeta(itemMeta);
 		return itemStack;

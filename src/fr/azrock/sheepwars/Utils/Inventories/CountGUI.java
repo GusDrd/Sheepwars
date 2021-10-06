@@ -1,11 +1,11 @@
-package fr.azrock.sheepwars.Utils.Inventories.GUIs;
+package fr.azrock.sheepwars.Utils.Inventories;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.ClickType;
 
 import fr.azrock.sheepwars.Utils.ItemBuilder;
-import fr.azrock.sheepwars.Utils.Inventories.AInventory;
+import fr.azrock.sheepwars.Utils.Inventories.AbstractGUI.AInventory;
 
 public class CountGUI extends AInventory {
 
@@ -13,7 +13,7 @@ public class CountGUI extends AInventory {
 	
 	
 	public CountGUI(String name, int var) {
-		super(9, name);
+		super(27, name);
 		
 		this.var = var;
 		

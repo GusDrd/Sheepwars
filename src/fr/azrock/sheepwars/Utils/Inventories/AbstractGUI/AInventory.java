@@ -1,4 +1,4 @@
-package fr.azrock.sheepwars.Utils.Inventories;
+package fr.azrock.sheepwars.Utils.Inventories.AbstractGUI;
 
 import java.util.HashMap;
 import java.util.Map;

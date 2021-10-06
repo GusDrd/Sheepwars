@@ -9,6 +9,9 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
+import fr.azrock.sheepwars.Utils.Inventories.AbstractGUI.AAction;
+import fr.azrock.sheepwars.Utils.Inventories.AbstractGUI.AInventory;
+
 public class InventoryListeners implements Listener {
 
 	@EventHandler
@@ -27,11 +30,8 @@ public class InventoryListeners implements Listener {
 		
 			AAction action = AInventory.getInventoryMap().get(invID).getActions().get(event.getSlot());
 			
-			if(action != null) {
+			if(action != null)
 				action.onClick(player, event.getClick());
-			}
-			
-			
 			
 		}
 	}

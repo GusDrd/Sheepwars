@@ -7,6 +7,7 @@ import fr.azrock.sheepwars.Common.Game;
 import fr.azrock.sheepwars.Config.ConfigManager;
 import fr.azrock.sheepwars.Utils.ListenerManager;
 import fr.azrock.sheepwars.Utils.Inventories.InventoryManager;
+import fr.azrock.sheepwars.Utils.SetupMode.Mode;
 
 public class SheepWars extends JavaPlugin {
 
@@ -20,6 +21,9 @@ public class SheepWars extends JavaPlugin {
 	private Game gameManager;
 	
 	
+	private Mode setupMode;
+	
+	
 	
 	public void onEnable() {
 		instance = this;
@@ -30,6 +34,8 @@ public class SheepWars extends JavaPlugin {
 		
 		guiManager = new InventoryManager();
 		
+		
+		setupMode = new Mode();
 		
 		ACommand.registerCommands(this);
 		
@@ -48,6 +54,10 @@ public class SheepWars extends JavaPlugin {
 	
 	public Game getGame() {
 		return this.gameManager;
+	}
+	
+	public Mode getSetupMode() {
+		return this.setupMode;
 	}
 	
 	public InventoryManager getInventoryManager() {

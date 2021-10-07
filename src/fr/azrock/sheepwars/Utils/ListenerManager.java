@@ -6,6 +6,7 @@ import org.bukkit.plugin.PluginManager;
 import fr.azrock.sheepwars.SheepWars;
 import fr.azrock.sheepwars.Listeners.ConnectionListeners;
 import fr.azrock.sheepwars.Utils.Inventories.InventoryListeners;
+import fr.azrock.sheepwars.Utils.SetupMode.ModeListeners;
 
 public class ListenerManager {
 
@@ -14,6 +15,7 @@ public class ListenerManager {
 		
 		pm.registerEvents(new InventoryListeners(), plugin);
 		pm.registerEvents(new ConnectionListeners(), plugin);
+		pm.registerEvents(new ModeListeners(), plugin);
 	}
 	
 }

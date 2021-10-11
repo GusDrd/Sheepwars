@@ -147,7 +147,7 @@ public class Game {
 		return lobby;
 	}
 
-	public Spawn getSpecSpawn() {
+	public Spawn getSpecLobby() {
 		return specSpawn;
 	}
 
@@ -212,9 +212,11 @@ public class Game {
 
 	public void setLobby(Spawn lobby) {
 		this.lobby = lobby;
+		config.setLobby(lobby.serialize());
 	}
 
-	public void getSpecSpawn(Spawn specSpawn) {
+	public void setSpecLobby(Spawn specSpawn) {
 		this.specSpawn = specSpawn;
+		config.setSpecLobby(lobby.serialize());
 	}
 }

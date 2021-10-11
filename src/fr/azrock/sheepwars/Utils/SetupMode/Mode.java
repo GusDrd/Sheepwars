@@ -1,7 +1,9 @@
 package fr.azrock.sheepwars.Utils.SetupMode;
 
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
+import fr.azrock.sheepwars.Utils.ItemBuilder;
 import net.md_5.bungee.api.ChatColor;
 
 public class Mode {
@@ -41,9 +43,12 @@ public class Mode {
 		if(mode == SetupMode.LOBBY || mode == SetupMode.SPEC_LOBBY) {
 			
 			player.sendMessage(ChatColor.GRAY+"--------");
-			player.sendMessage(ChatColor.YELLOW+"To setup the spawn point, place yourself at a location, look in the direction you wish and interract with the compass.");
+			player.sendMessage(ChatColor.YELLOW+"To setup the spawn point, place yourself at a location, look in the direction you wish and interract with the spawnpoint selector.");
 			player.sendMessage(ChatColor.YELLOW+"This will automatically save the spawn point.");
 			player.sendMessage(ChatColor.GRAY+"--------");
+			
+			player.getInventory().clear();
+			player.getInventory().setItem(0, new ItemBuilder("Spawnpoint Selector", 1, Material.BLAZE_ROD).build());
 			
 		}else if(mode == SetupMode.RED_SPAWNS || mode == SetupMode.BLUE_SPAWNS) {
 			

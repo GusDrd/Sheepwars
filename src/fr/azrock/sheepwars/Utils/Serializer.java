@@ -7,7 +7,7 @@ public class Serializer {
 
 	public static String serializeLoc(Location loc) {
 		if(loc == null)
-			return "";
+			return " ";
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(loc.getWorld().getName()); sb.append('%');
@@ -31,7 +31,7 @@ public class Serializer {
 	
 	public static String serializePos(Location loc) {
 		if(loc == null)
-			return "";
+			return " ";
 		
 		StringBuilder sb = new StringBuilder();
 		sb.append(loc.getWorld().getName()); sb.append('%');

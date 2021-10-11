@@ -8,6 +8,7 @@ import org.bukkit.Material;
 import fr.azrock.sheepwars.SheepWars;
 import fr.azrock.sheepwars.Utils.ItemBuilder;
 import fr.azrock.sheepwars.Utils.Inventories.AbstractGUI.AInventory;
+import fr.azrock.sheepwars.Utils.SetupMode.SetupMode;
 
 public class SpawnSetupGUI extends AInventory {
 
@@ -19,16 +20,14 @@ public class SpawnSetupGUI extends AInventory {
 				Arrays.asList(" ", ChatColor.GRAY+"Click to setup", ChatColor.GRAY+"the lobby spawnpoint.")).build(), 
 				(player, click) -> {
 
-					//Enter SETUP MODE
-
+					SheepWars.get().getSetupMode().enter(player, SetupMode.LOBBY);
 				});
 
 		setItem(12, new ItemBuilder(ChatColor.YELLOW+"Spectator Lobby", 1, Material.ENDER_EYE, 
 				Arrays.asList(" ", ChatColor.GRAY+"Click to setup", ChatColor.GRAY+"the spectator spawnpoint.")).build(), 
 				(player, click) -> {
 
-					//Enter SETUP MODE
-
+					SheepWars.get().getSetupMode().enter(player, SetupMode.SPEC_LOBBY);
 				});
 		
 		setItem(14, new ItemBuilder(ChatColor.RED+"Red Spawns", 1, Material.RED_WOOL, 

@@ -3,6 +3,7 @@ package fr.azrock.sheepwars.Common;
 import org.bukkit.plugin.Plugin;
 
 import fr.azrock.sheepwars.Config.AConfig;
+import fr.azrock.sheepwars.Utils.Spawn;
 
 public class GameConfig extends AConfig {
 
@@ -21,6 +22,9 @@ public class GameConfig extends AConfig {
 
 	private final String SHEEP_INTERVAL = "sheepGiveInterval";
 	private final String DEATH_INTERVAL = "deathMatchGiveInterval";
+	
+	private final String LOBBY = "lobby";
+	private final String SPEC_LOBBY = "specLobby";
 
 
 
@@ -89,6 +93,14 @@ public class GameConfig extends AConfig {
 	public void setDeathMatchGiveInterval(int i) {
 		this.setPath(PATH+DEATH_INTERVAL, i);
 	}
+	
+	public void setLobby(String s) {
+		this.setPath(PATH+LOBBY, s);
+	}
+	
+	public void setSpecLobby(String s) {
+		this.setPath(PATH+SPEC_LOBBY, s);
+	}
 
 
 
@@ -128,5 +140,13 @@ public class GameConfig extends AConfig {
 
 	public int getDeathMatchGiveInterval() {
 		return this.get(PATH+DEATH_INTERVAL);
+	}
+	
+	public Spawn getLobby() {
+		return Spawn.unserialize(this.get(PATH+LOBBY));
+	}
+	
+	public Spawn getSpecLobby() {
+		return Spawn.unserialize(this.get(PATH+SPEC_LOBBY));
 	}
 }

@@ -167,38 +167,47 @@ public class Game {
 
 	public void setMinPlayers(int minPlayers) {
 		this.minPlayers = minPlayers;
+		config.setMinPlayers(minPlayers);
 	}
 
 	public void setPlayersToReduce(int playersToReduce) {
 		this.playersToReduce = playersToReduce;
+		config.setPlayersToReduce(playersToReduce);
 	}
 
 	public void setMaxPlayers(int maxPlayers) {
 		this.maxPlayers = maxPlayers;
+		config.setMaxPlayers(maxPlayers);
 	}
 
 	public void setWaitingTime(int waitingTime) {
 		this.waitingTime = waitingTime;
+		config.setWaitingTime(waitingTime);
 	}
 
 	public void setGameTime(int gameTime) {
 		this.gameTime = gameTime;
+		config.setGameTime(gameTime);
 	}
 
 	public void setDeathMatchTime(int deathMatchTime) {
 		this.deathMatchTime = deathMatchTime;
+		config.setDeathMatchTime(deathMatchTime);
 	}
 
 	public void setBonusSpawnInterval(int bonusSpawnInterval) {
 		this.bonusSpawnInterval = bonusSpawnInterval;
+		config.setBonusSpawnInterval(bonusSpawnInterval);
 	}
 
 	public void setSheepGiveInterval(int sheepGiveInterval) {
 		this.sheepGiveInterval = sheepGiveInterval;
+		config.setSheepGiveInterval(sheepGiveInterval);
 	}
 
 	public void setDeathMatchGiveInterval(int deathMatchGiveInterval) {
 		this.deathMatchGiveInterval = deathMatchGiveInterval;
+		config.setDeathMatchGiveInterval(deathMatchGiveInterval);
 	}
 
 	public void setLobby(Spawn lobby) {

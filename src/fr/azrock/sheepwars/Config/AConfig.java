@@ -25,6 +25,7 @@ public abstract class AConfig {
 		this.plugin = plugin;
 		
 		saveFile();
+		reload();
 	}
 	
 	

@@ -35,10 +35,14 @@ public class SWCommand extends ACommand {
 
 			player.sendMessage(ChatColor.DARK_GRAY+"-------- "+ChatColor.AQUA+"SheepWars"+ChatColor.DARK_GRAY+" --------");
 			player.sendMessage(ChatColor.YELLOW+"Welcome in SheepWars!");
-			player.sendMessage(ChatColor.YELLOW+"To configure your sheepwars server, simply type "+ChatColor.AQUA+"/sw setup"+ChatColor.YELLOW+" !");
-			player.sendMessage(ChatColor.YELLOW+"Simply navigate through the interactive menu to setup your server.");
-			player.sendMessage(ChatColor.YELLOW+"All public messages can be changed through the "+ChatColor.AQUA+"message.yml"+ChatColor.AQUA+" config file.");
-			player.sendMessage(ChatColor.DARK_GRAY+"-------------------------");
+			player.sendMessage(" ");
+			player.sendMessage(ChatColor.YELLOW+"To configure your sheepwars server,");
+			player.sendMessage(ChatColor.YELLOW+"simply type "+ChatColor.AQUA+"/sw setup"+ChatColor.YELLOW+" and navigate");
+			player.sendMessage(ChatColor.YELLOW+"through the menu to setup everything.");
+			player.sendMessage(" ");
+			player.sendMessage(ChatColor.YELLOW+"All public messages can be changed through");
+			player.sendMessage(ChatColor.YELLOW+"the "+ChatColor.AQUA+"message.yml"+ChatColor.YELLOW+" configuration file.");
+			player.sendMessage(ChatColor.DARK_GRAY+"--------------------------");
 			return;
 
 		}else {

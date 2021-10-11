@@ -14,7 +14,7 @@ public class MessageConfig extends AConfig {
 	
 	public MessageConfig(Plugin plugin) {
 		super("messages", plugin);
-		
+				
 		ARENA_JOIN = this.get(PATH+"ARENA_JOIN");
 		ARENA_LEAVE = this.get(PATH+"ARENA_LEAVE");
 	}

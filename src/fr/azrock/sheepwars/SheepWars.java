@@ -10,7 +10,7 @@ import fr.azrock.sheepwars.Utils.Inventories.InventoryManager;
 import fr.azrock.sheepwars.Utils.SetupMode.Mode;
 
 public class SheepWars extends JavaPlugin {
-
+	
 	
 	private static SheepWars instance;
 	

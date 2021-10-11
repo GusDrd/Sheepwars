@@ -23,16 +23,7 @@ public Plugin plugin;
 		
 		this.configList = new ArrayList<AConfig>();
 		
-		registerConfigs();
-		setup();
-		
-	}
-	
-	
-	
-	public void setup() {
-		for(AConfig config : configList)
-			config.reload();
+		registerConfigs();		
 	}
 	
 	

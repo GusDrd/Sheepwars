@@ -11,9 +11,9 @@ import fr.azrock.sheepwars.Utils.Spawn;
 public class Game {
 
 	private SheepWars plugin;
-	
+
 	private GameConfig config;
-	
+
 
 	private int minPlayers;
 	private int playersToReduce;
@@ -41,41 +41,47 @@ public class Game {
 	public Game(SheepWars plugin) {
 
 		this.plugin = plugin;
-		
+
 		this.config = (GameConfig)plugin.getConfigManager().getConfigByName("game");
 
-		
+
 		//----- PLAYER LIMITS -------------------
-		setMinPlayers(config.getMinPlayers());
-		setMaxPlayers(config.getMaxPlayers());
-		setPlayersToReduce(config.getPlayersToReduce());
+		minPlayers = config.getMinPlayers();
+		maxPlayers = config.getMaxPlayers();
+		playersToReduce = config.getPlayersToReduce();
 
-		
+
 		//----- TIMERS --------------------------
-		setWaitingTime(config.getWaitingTime());
-		setGameTime(config.getGameTime());
-		setDeathMatchTime(config.getDeathMatchGiveInterval());
+		waitingTime = config.getWaitingTime();
+		gameTime = config.getGameTime();
+		deathMatchTime = config.getDeathMatchGiveInterval();
 
-		
+
 		//----- BONUS ---------------------------
-		setBonusSpawnInterval(config.getBonusSpawnInterval());
+		bonusSpawnInterval = config.getBonusSpawnInterval();
 		this.bonusLocs = new ArrayList<Location>();
 
-		
-		//----- INTERVALS -----------------------
-		setSheepGiveInterval(config.getSheepGiveInterval());
-		setDeathMatchGiveInterval(config.getDeathMatchGiveInterval());
 
-		
+		//----- INTERVALS -----------------------
+		sheepGiveInterval = config.getSheepGiveInterval();
+		deathMatchGiveInterval = config.getDeathMatchGiveInterval();
+
+
 		//----- SHEEPS ON -----------------------
 		this.enabledSheeps = new ArrayList<Sheep>();
 
-		
+
 		//----- SPAWNS --------------------------
-		this.lobby = null;
-		this.specSpawn = null;
+		this.lobby = config.getLobby();
+		this.specSpawn = config.getSpecLobby();
 		this.redSpawns = new ArrayList<Spawn>();
 		this.blueSpawns = new ArrayList<Spawn>();
+		
+		if(config.getRedSpawns() != null)
+			for(String s : config.getRedSpawns()) redSpawns.add(Spawn.unserialize(s));
+		
+		if(config.getBlueSpawns() != null)
+			for(String s : config.getBlueSpawns()) blueSpawns.add(Spawn.unserialize(s));
 	}
 
 
@@ -91,9 +97,9 @@ public class Game {
 	public void endGame() {
 
 	}
-	
-	
-	
+
+
+
 
 	/* =========================================================  *
 	 * ===                      GETTERS                      ===  *
@@ -218,5 +224,25 @@ public class Game {
 	public void setSpecLobby(Spawn specSpawn) {
 		this.specSpawn = specSpawn;
 		config.setSpecLobby(lobby.serialize());
+	}
+
+	public void addRedSpawn(Spawn spawn) {
+		this.redSpawns.add(spawn);
+	}
+
+	public void saveRedSpawn() {
+		ArrayList<String> list = new ArrayList<String>();
+		for(Spawn s : redSpawns) list.add(s.serialize());
+		config.setRedSpawns(list);
+	}
+
+	public void addBlueSpawn(Spawn spawn) {
+		this.blueSpawns.add(spawn);
+	}
+
+	public void saveBlueSpawns() {
+		ArrayList<String> list = new ArrayList<String>();
+		for(Spawn s : blueSpawns) list.add(s.serialize());
+		config.setBlueSpawns(list);
 	}
 }

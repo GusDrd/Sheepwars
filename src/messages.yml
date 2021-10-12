@@ -1,2 +1,2 @@
-ARENA_JOIN: "&aYou have joined %arena_id% !"
-ARENA_LEAVE: "&cYou have left the arena !"
+GAME_JOIN: "&b%player% &ehas joined the game ! (&b%players%&e/&b%max_players%&e)"
+WAIT_TIME: "&eThe game will start in &b%time% &eseconds !"

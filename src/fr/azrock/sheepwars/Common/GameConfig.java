@@ -1,8 +1,11 @@
 package fr.azrock.sheepwars.Common;
 
+import java.util.List;
+
 import org.bukkit.plugin.Plugin;
 
 import fr.azrock.sheepwars.Config.AConfig;
+import fr.azrock.sheepwars.Utils.Serializer;
 import fr.azrock.sheepwars.Utils.Spawn;
 
 public class GameConfig extends AConfig {
@@ -25,6 +28,8 @@ public class GameConfig extends AConfig {
 	
 	private final String LOBBY = "lobby";
 	private final String SPEC_LOBBY = "specLobby";
+	private final String RED_SPAWNS = "redSpawns";
+	private final String BLUE_SPAWNS = "blueSpawns";
 
 
 
@@ -101,6 +106,14 @@ public class GameConfig extends AConfig {
 	public void setSpecLobby(String s) {
 		this.setPath(PATH+SPEC_LOBBY, s);
 	}
+	
+	public void setRedSpawns(List<String> s) {
+		this.setPath(PATH+RED_SPAWNS, s);
+	}
+	
+	public void setBlueSpawns(List<String> s) {
+		this.setPath(PATH+BLUE_SPAWNS, s);
+	}
 
 
 
@@ -143,10 +156,18 @@ public class GameConfig extends AConfig {
 	}
 	
 	public Spawn getLobby() {
-		return Spawn.unserialize(this.get(PATH+LOBBY));
+		return this.pathIsNull(PATH+LOBBY) ? null : new Spawn(Serializer.deserializePos(this.get(PATH+LOBBY)));
 	}
 	
 	public Spawn getSpecLobby() {
-		return Spawn.unserialize(this.get(PATH+SPEC_LOBBY));
+		return this.pathIsNull(PATH+LOBBY) ? null : new Spawn(Serializer.deserializePos(this.get(PATH+SPEC_LOBBY)));
+	}
+	
+	public List<String> getRedSpawns() {
+		return this.getConfig().getStringList(PATH+RED_SPAWNS);
+	}
+	
+	public List<String> getBlueSpawns() {
+		return this.getConfig().getStringList(PATH+BLUE_SPAWNS);
 	}
 }

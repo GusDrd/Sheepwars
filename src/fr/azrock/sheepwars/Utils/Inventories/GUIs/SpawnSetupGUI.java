@@ -20,21 +20,30 @@ public class SpawnSetupGUI extends AInventory {
 				Arrays.asList(" ", ChatColor.GRAY+"Click to setup", ChatColor.GRAY+"the lobby spawnpoint.")).build(), 
 				(player, click) -> {
 
-					SheepWars.get().getSetupMode().enter(player, SetupMode.LOBBY);
+					if(SheepWars.get().getSetupMode().enter(player, SetupMode.LOBBY)) {
+						player.sendMessage(ChatColor.RED+"Another player is already setting up the spawn locations!");
+						player.closeInventory();
+					}
 				});
 
 		setItem(12, new ItemBuilder(ChatColor.YELLOW+"Spectator Lobby", 1, Material.ENDER_EYE, 
 				Arrays.asList(" ", ChatColor.GRAY+"Click to setup", ChatColor.GRAY+"the spectator spawnpoint.")).build(), 
 				(player, click) -> {
 
-					SheepWars.get().getSetupMode().enter(player, SetupMode.SPEC_LOBBY);
+					if(!SheepWars.get().getSetupMode().enter(player, SetupMode.SPEC_LOBBY)) {
+						player.sendMessage(ChatColor.RED+"Another player is already setting up the spawn locations!");
+						player.closeInventory();
+					}
 				});
 		
 		setItem(14, new ItemBuilder(ChatColor.RED+"Red Spawns", 1, Material.RED_WOOL, 
 				Arrays.asList(" ", ChatColor.GRAY+"Click to setup", ChatColor.GRAY+"the red team's", ChatColor.GRAY+"game spawnpoints.")).build(), 
 				(player, click) -> {
 
-					//Enter SETUP MODE
+					if(!SheepWars.get().getSetupMode().enter(player, SetupMode.RED_SPAWNS)) {
+						player.sendMessage(ChatColor.RED+"Another player is already setting up the spawn locations!");
+						player.closeInventory();
+					}
 
 				});
 
@@ -42,7 +51,10 @@ public class SpawnSetupGUI extends AInventory {
 				Arrays.asList(" ", ChatColor.GRAY+"Click to setup", ChatColor.GRAY+"the blue team's", ChatColor.GRAY+"game spawnpoints.")).build(), 
 				(player, click) -> {
 					
-					//Enter SETUP MODE
+					if(!SheepWars.get().getSetupMode().enter(player, SetupMode.BLUE_SPAWNS)) {
+						player.sendMessage(ChatColor.RED+"Another player is already setting up the spawn locations!");
+						player.closeInventory();
+					}
 					
 				});
 

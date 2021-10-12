@@ -50,10 +50,32 @@ public class ModeListeners implements Listener {
 						//-----------------------
 					case BLUE_SPAWNS:
 
+						int current = SheepWars.get().getGame().getBlueSpawns().size();
+						int min = (int)Math.ceil(SheepWars.get().getGame().getMaxPlayers()/2.0);
+						
+						SheepWars.get().getGame().addBlueSpawn(spawn);
+						
+						current++;
+						int v = min-current;
+						
+						event.getPlayer().sendMessage(ChatColor.YELLOW+"You have set a new spawnpoint for the "+ChatColor.BLUE+"blue team"+ChatColor.YELLOW+" !");
+						event.getPlayer().sendMessage(ChatColor.YELLOW+"You need "+ChatColor.BLUE+v+ChatColor.YELLOW+" more spawns !");
+
 						break;
 
 						//-----------------------
 					case RED_SPAWNS:
+						
+						current = SheepWars.get().getGame().getRedSpawns().size();
+						min = (int)Math.ceil(SheepWars.get().getGame().getMaxPlayers()/2.0);
+						
+						SheepWars.get().getGame().addRedSpawn(spawn);
+						
+						current++;
+						int vR = min-current;
+						
+						event.getPlayer().sendMessage(ChatColor.YELLOW+"You have set a new spawnpoint for the "+ChatColor.RED+"red team"+ChatColor.YELLOW+" !");
+						event.getPlayer().sendMessage(ChatColor.YELLOW+"You need "+ChatColor.RED+vR+ChatColor.YELLOW+" more spawns !");
 
 						break;
 
@@ -78,7 +100,18 @@ public class ModeListeners implements Listener {
 
 		if(mode.isEnabled()) {
 			if(event.getPlayer().getName().equals(mode.getPlayer().getName())) {
+				
+				if(mode.getMode() == SetupMode.RED_SPAWNS) {
+					SheepWars.get().getGame().saveRedSpawn();
+				}else if(mode.getMode() == SetupMode.BLUE_SPAWNS) {
+					SheepWars.get().getGame().saveBlueSpawns();
+				}else {
+					mode.leave();
+				}
+				
+				event.getPlayer().sendMessage(ChatColor.GREEN+"The lobbies have successfuly been saved!");
 				mode.leave();
+				return;
 			}
 		}
 	}

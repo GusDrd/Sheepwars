@@ -50,14 +50,18 @@ public abstract class AConfig {
 		
 		if (!configFile.exists()) {
         	configFile.getParentFile().mkdirs();
+        	
+        	if(plugin.getResource(name+".yml") != null) {
+        		plugin.saveResource(name+".yml", false);
+        		return;
+        	}
+        	
+        	
         	try {
 				configFile.createNewFile();
 			} catch (IOException e) {
 				Bukkit.getLogger().log(Level.WARNING, "Could not create file "+name+".yml", e);
 			}
-        	
-        	if(plugin.getResource(name+".yml") != null)
-        		plugin.saveResource(name+".yml", false);
         	
          }
 	}

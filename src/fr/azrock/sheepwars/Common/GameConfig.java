@@ -46,7 +46,7 @@ public class GameConfig extends AConfig {
 			this.setPath(PATH+REDUCE_PLAYERS, 14);
 			this.setPath(PATH+MAX_PLAYERS, 10);
 
-			this.setPath(PATH+WAIT_TIME, 120);
+			this.setPath(PATH+WAIT_TIME, 60);
 			this.setPath(PATH+GAME_TIME, 600);
 			this.setPath(PATH+DEATH_TIME, 300);
 

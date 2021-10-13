@@ -6,6 +6,9 @@ import org.bukkit.Location;
 
 import fr.azrock.sheepwars.SheepWars;
 import fr.azrock.sheepwars.Common.Sheeps.Sheep;
+import fr.azrock.sheepwars.Common.Tasks.DeathmatchTask;
+import fr.azrock.sheepwars.Common.Tasks.GameTask;
+import fr.azrock.sheepwars.Common.Tasks.WaitingTask;
 import fr.azrock.sheepwars.Utils.Spawn;
 
 public class Game {
@@ -15,22 +18,33 @@ public class Game {
 	private GameConfig config;
 
 
+	// -- Players --
 	private int minPlayers;
 	private int playersToReduce;
 	private int maxPlayers;
 
+	// -- Times --
 	private int waitingTime;
 	private int gameTime;
 	private int deathMatchTime;
 
+	// -- Tasks --
+	private WaitingTask waitTask;
+	private GameTask gameTask;
+	private DeathmatchTask deathTask;
+	
+	// -- Bonus --
 	private int bonusSpawnInterval;
 	public ArrayList<Location> bonusLocs;
 
+	// -- Give Intervals --
 	private int sheepGiveInterval;
 	private int deathMatchGiveInterval;
 
+	// -- Sheeps --
 	public ArrayList<Sheep> enabledSheeps;
 
+	// -- Spawns --
 	private Spawn lobby;
 	private Spawn specSpawn;
 	public ArrayList<Spawn> redSpawns;
@@ -55,6 +69,12 @@ public class Game {
 		waitingTime = config.getWaitingTime();
 		gameTime = config.getGameTime();
 		deathMatchTime = config.getDeathMatchGiveInterval();
+		
+
+		//----- TASKS ---------------------------
+		waitTask = new WaitingTask(this);
+		gameTask = new GameTask(this);
+		deathTask = new DeathmatchTask(this);
 
 
 		//----- BONUS ---------------------------
@@ -163,6 +183,18 @@ public class Game {
 
 	public ArrayList<Spawn> getBlueSpawns() {
 		return blueSpawns;
+	}
+	
+	public WaitingTask getWaitingTask() {
+		return waitTask;
+	}
+	
+	public GameTask getGameTask() {
+		return gameTask;
+	}
+	
+	public DeathmatchTask getDeathmatchTask() {
+		return deathTask;
 	}
 
 

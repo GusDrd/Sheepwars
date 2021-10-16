@@ -1,6 +1,6 @@
 name: SheepWars
 main: fr.azrock.sheepwars.SheepWars
-version: 0.2.0
+version: 0.2
 author: GusDrd
 
 api-version: 1.13

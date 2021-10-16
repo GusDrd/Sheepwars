@@ -5,12 +5,12 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import fr.azrock.sheepwars.Common.Game;
+import fr.azrock.sheepwars.Common.Game.Game;
 
 public class WaitingTask extends BukkitRunnable {
 
 	
-	private int TIME, REDUCE_TIME, seconds, storedTime;
+	private int TIME, REDUCE_TIME, seconds;
 	
 	private Game game;
 		
@@ -22,8 +22,8 @@ public class WaitingTask extends BukkitRunnable {
 		REDUCE_TIME = (int)Math.ceil(TIME/2.0);
 		
 		seconds = TIME;
-		storedTime = -1;
 	}
+	
 	
 	
 	@Override
@@ -34,7 +34,7 @@ public class WaitingTask extends BukkitRunnable {
 			
 			for(Player player : Bukkit.getOnlinePlayers()) {
 				player.setLevel(seconds);
-				player.setExp(((float)seconds/180f));
+				player.setExp((seconds / (float)TIME));
 			}
 			
 			if(seconds == 60) {
@@ -62,40 +62,30 @@ public class WaitingTask extends BukkitRunnable {
 			}
 			
 		}else {
-			stop();
+			cancel();
+			reset();
 			Bukkit.broadcastMessage("§aStart Game");
 		}
 		
 	}
 	
-	
-	public void stop() {
-		cancel();
-		reset();
-	}
-	
 	public void reset() {
-		seconds = TIME;
 		for(Player p : Bukkit.getOnlinePlayers()) {
-			p.setLevel(seconds);
-			p.setExp((float)seconds/180f);
+			p.setLevel(0);
+			p.setExp(0.0F);
 		}
+		seconds = TIME;
 	}
 	
 	public void reduce() {
 		if(seconds <= REDUCE_TIME) return;
 		
-		storedTime = seconds;
 		seconds = REDUCE_TIME;
 	}
-	
-	public void setBack() {
-		if(storedTime == -1)
-			seconds = TIME;
-		else
-			seconds = storedTime;
-		
-		storedTime = -1;
-	}
 
+	
+	
+	public int getTime() {
+		return seconds;
+	}
 }

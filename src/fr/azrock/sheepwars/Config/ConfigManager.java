@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
-import fr.azrock.sheepwars.Common.GameConfig;
+import fr.azrock.sheepwars.Common.Game.GameConfig;
 import fr.azrock.sheepwars.Config.ConfigFiles.MessageConfig;
 
 public class ConfigManager {

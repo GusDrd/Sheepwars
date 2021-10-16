@@ -6,6 +6,7 @@ import java.util.Arrays;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
+import fr.azrock.sheepwars.Commands.Cmds.GiveCmd;
 import fr.azrock.sheepwars.Commands.Cmds.SetupCmd;
 
 public class SWCommand extends ACommand {
@@ -23,6 +24,7 @@ public class SWCommand extends ACommand {
 	
 	public void registerSubCommands() {
 		sCommands.add(new SetupCmd());
+		sCommands.add(new GiveCmd());
 	}
 	
 

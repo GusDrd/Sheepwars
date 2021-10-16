@@ -1,8 +1,6 @@
 package fr.azrock.sheepwars.Utils.SetupMode;
 
 import org.bukkit.Material;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
@@ -10,11 +8,10 @@ import fr.azrock.sheepwars.SheepWars;
 import fr.azrock.sheepwars.Utils.Spawn;
 import net.md_5.bungee.api.ChatColor;
 
-public class ModeListeners implements Listener {
+public class ModeListeners {
 
 
-	@EventHandler
-	public void onInteract(PlayerInteractEvent event) {
+	public static void onInteract(PlayerInteractEvent event) {
 
 		Mode mode = SheepWars.get().getSetupMode();
 
@@ -94,8 +91,10 @@ public class ModeListeners implements Listener {
 	}
 
 
-	@EventHandler
-	public void onDrop(PlayerDropItemEvent event) {
+	
+	
+	
+	public static void onDrop(PlayerDropItemEvent event) {
 		Mode mode = SheepWars.get().getSetupMode();
 
 		if(mode.isEnabled()) {
@@ -111,6 +110,7 @@ public class ModeListeners implements Listener {
 				
 				event.getPlayer().sendMessage(ChatColor.GREEN+"The lobbies have successfuly been saved!");
 				mode.leave();
+				event.setCancelled(true);
 				return;
 			}
 		}

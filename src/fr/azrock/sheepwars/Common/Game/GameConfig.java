@@ -1,4 +1,4 @@
-package fr.azrock.sheepwars.Common;
+package fr.azrock.sheepwars.Common.Game;
 
 import java.util.List;
 

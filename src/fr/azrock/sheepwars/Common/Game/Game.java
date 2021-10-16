@@ -1,8 +1,10 @@
-package fr.azrock.sheepwars.Common;
+package fr.azrock.sheepwars.Common.Game;
 
 import java.util.ArrayList;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.entity.Player;
 
 import fr.azrock.sheepwars.SheepWars;
 import fr.azrock.sheepwars.Common.Sheeps.Sheep;
@@ -49,6 +51,9 @@ public class Game {
 	private Spawn specSpawn;
 	public ArrayList<Spawn> redSpawns;
 	public ArrayList<Spawn> blueSpawns;
+	
+	// -- Other --
+	private GameState state;
 
 
 
@@ -72,7 +77,7 @@ public class Game {
 		
 
 		//----- TASKS ---------------------------
-		waitTask = new WaitingTask(this);
+		waitTask = null;
 		gameTask = new GameTask(this);
 		deathTask = new DeathmatchTask(this);
 
@@ -102,6 +107,10 @@ public class Game {
 		
 		if(config.getBlueSpawns() != null)
 			for(String s : config.getBlueSpawns()) blueSpawns.add(Spawn.unserialize(s));
+		
+		
+		//----- OTHER --------------------------
+		state = GameState.WAITING;
 	}
 
 
@@ -196,6 +205,10 @@ public class Game {
 	public DeathmatchTask getDeathmatchTask() {
 		return deathTask;
 	}
+	
+	public GameState getGameState() {
+		return state;
+	}
 
 
 
@@ -276,5 +289,26 @@ public class Game {
 		ArrayList<String> list = new ArrayList<String>();
 		for(Spawn s : blueSpawns) list.add(s.serialize());
 		config.setBlueSpawns(list);
+	}
+	
+	public void setGameState(GameState state) {
+		this.state = state;
+	}
+	
+	public void runWaitingTask() {
+		this.waitTask = new WaitingTask(this);
+		waitTask.runTaskTimer(plugin, 0L, 20L);
+	}
+	
+	public void stopWaitingTask() {
+		this.waitTask.cancel();
+		for(Player p : Bukkit.getOnlinePlayers()) {
+			p.setLevel(0);
+			p.setExp(0.0F);
+		}
+	}
+	
+	public void reduceWaitingTask() {
+		this.waitTask.reduce();
 	}
 }
